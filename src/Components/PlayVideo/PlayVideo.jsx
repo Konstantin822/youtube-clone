@@ -43,7 +43,7 @@ const PlayVideo = () => {
                         <p>"Comment" Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Ut, ipsum corporis fugit optio in minus eligendi natus necessitatibus ab ducimus.
                         </p>
-                        <div className="play-video__vid-description_comment_comment-action">
+                        <div className="play-video__vid-description_comment-action">
                             <img src={like} alt="" />
                             <span>244</span>
                             <img src={dislike} alt="" />
@@ -57,7 +57,7 @@ const PlayVideo = () => {
                         <p>"Comment" Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Ut, ipsum corporis fugit optio in minus eligendi natus necessitatibus ab ducimus.
                         </p>
-                        <div className="play-video__vid-description_comment_comment-action">
+                        <div className="play-video__vid-description_comment-action">
                             <img src={like} alt="" />
                             <span>244</span>
                             <img src={dislike} alt="" />
@@ -71,7 +71,7 @@ const PlayVideo = () => {
                         <p>"Comment" Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Ut, ipsum corporis fugit optio in minus eligendi natus necessitatibus ab ducimus.
                         </p>
-                        <div className="play-video__vid-description_comment_comment-action">
+                        <div className="play-video__vid-description_comment-action">
                             <img src={like} alt="" />
                             <span>244</span>
                             <img src={dislike} alt="" />
@@ -85,7 +85,7 @@ const PlayVideo = () => {
                         <p>"Comment" Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Ut, ipsum corporis fugit optio in minus eligendi natus necessitatibus ab ducimus.
                         </p>
-                        <div className="play-video__vid-description_comment_comment-action">
+                        <div className="play-video__vid-description_comment-action">
                             <img src={like} alt="" />
                             <span>244</span>
                             <img src={dislike} alt="" />
