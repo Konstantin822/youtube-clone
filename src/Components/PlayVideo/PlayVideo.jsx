@@ -13,6 +13,7 @@ import moment from "moment";
 const PlayVideo = ({ videoId }) => {
     const [apiData, setApiData] = useState(null)
     const [channelData, setChannelData] = useState(null)
+    const [commentData, setCommentData] = useState([])
 
     const fetchVideoData = async () => {
         // Fetching Videos Data
@@ -28,6 +29,12 @@ const PlayVideo = ({ videoId }) => {
         await fetch(channelDataUrl)
             .then(res => res.json())
             .then(data => setChannelData(data.items[0]))
+
+        // Fetching Comment Data
+        const commentUrl = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId=${videoId}&key=${API_KEY}`
+        await fetch(commentUrl)
+            .then(res => res.json())
+            .then(data => setCommentData(data.items))
     }
 
     useEffect(() => {
@@ -64,62 +71,22 @@ const PlayVideo = ({ videoId }) => {
                 <p>{apiData ? apiData.snippet.description.slice(0, 250) : 'Description Here'}</p>
                 <hr />
                 <h4>{apiData ? valueConverter(apiData.statistics.commentCount) : 102} Comments</h4>
-                <div className="play-video__vid-description_comment">
-                    <img src={user_profile} alt="" />
-                    <div>
-                        <h3>John Smith <span>1 day ago</span></h3>
-                        <p>"Comment" Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                            Ut, ipsum corporis fugit optio in minus eligendi natus necessitatibus ab ducimus.
-                        </p>
-                        <div className="play-video__vid-description_comment-action">
-                            <img src={like} alt="" />
-                            <span>244</span>
-                            <img src={dislike} alt="" />
+                {commentData.map((item, index) => {
+                    return (
+                        <div key={index} className="play-video__vid-description_comment">
+                            <img src={item.snippet.topLevelComment.snippet.authorProfileImageUrl} alt="" />
+                            <div>
+                                <h3>{item.snippet.topLevelComment.snippet.authorDisplayName} <span>1 day ago</span></h3>
+                                <p>{item.snippet.topLevelComment.snippet.textDisplay}</p>
+                                <div className="play-video__vid-description_comment-action">
+                                    <img src={like} alt="" />
+                                    <span>{valueConverter(item.snippet.topLevelComment.snippet.likeCount)}</span>
+                                    <img src={dislike} alt="" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className="play-video__vid-description_comment">
-                    <img src={user_profile} alt="" />
-                    <div>
-                        <h3>John Smith <span>1 day ago</span></h3>
-                        <p>"Comment" Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                            Ut, ipsum corporis fugit optio in minus eligendi natus necessitatibus ab ducimus.
-                        </p>
-                        <div className="play-video__vid-description_comment-action">
-                            <img src={like} alt="" />
-                            <span>244</span>
-                            <img src={dislike} alt="" />
-                        </div>
-                    </div>
-                </div>
-                <div className="play-video__vid-description_comment">
-                    <img src={user_profile} alt="" />
-                    <div>
-                        <h3>John Smith <span>1 day ago</span></h3>
-                        <p>"Comment" Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                            Ut, ipsum corporis fugit optio in minus eligendi natus necessitatibus ab ducimus.
-                        </p>
-                        <div className="play-video__vid-description_comment-action">
-                            <img src={like} alt="" />
-                            <span>244</span>
-                            <img src={dislike} alt="" />
-                        </div>
-                    </div>
-                </div>
-                <div className="play-video__vid-description_comment">
-                    <img src={user_profile} alt="" />
-                    <div>
-                        <h3>John Smith <span>1 day ago</span></h3>
-                        <p>"Comment" Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                            Ut, ipsum corporis fugit optio in minus eligendi natus necessitatibus ab ducimus.
-                        </p>
-                        <div className="play-video__vid-description_comment-action">
-                            <img src={like} alt="" />
-                            <span>244</span>
-                            <img src={dislike} alt="" />
-                        </div>
-                    </div>
-                </div>
+                    )
+                })}
             </div>
         </div>
     )
