@@ -40,7 +40,30 @@ nav {
     margin-right: 25px;
 }
 
-.nav-right__user-icon {
+.nav-right .user-icon {
     width: 35px;
     border-radius: 50%;
+}
+
+@media (max-width: 900px) {
+    .nav-left__menu-icon {
+        display: none;
+    }
+
+    .nav-right img {
+        display: none;
+    }
+
+    .nav-right .user-icon {
+        display: block;
+        width: 30px;
+    }
+
+    .nav-left__logo {
+        width: 90px;
+    }
+
+    .nav-middle__search-box input {
+        width: 100px;
+    }
 }
